@@ -23,3 +23,30 @@ contains x u = x `elem` u
 
 total :: [Int] -> Int
 total u = length u 
+
+bigger :: [Int] -> Int
+bigger u = maximum u
+
+frequency :: Int -> [Int] -> Int
+frequency x u = length [y | y <- u, x == y] 
+
+unique :: Int -> [Int] -> Bool
+unique x u = length [y | y <- u, x == y] == 1
+
+biggersThan :: Int -> [Int] -> [Int]
+biggersThan x u = [y | y <- u, y > x]
+
+concat' :: [Int] -> [Int] -> [Int]
+concat' l1 l2 = l1 ++ l2
+
+tail' :: [Int] -> [Int]
+tail' u = tail u
+
+body :: [Int] -> [Int]
+body u = init u
+
+unique' :: [Int] -> [Int]
+unique' u = [x | x <- u, y <- u, x /= y] 
+
+minors :: Int -> [Int] -> [Int]
+minors n u = take n ([x | x <- u, x == minimum u])
