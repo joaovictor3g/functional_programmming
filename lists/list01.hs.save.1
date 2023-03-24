@@ -55,15 +55,10 @@ unique' (x:xs) = if x `notElem` xs then [x] ++ unique' xs else unique' xs
 -- minors :: Int -> [Int] -> [Int]
 -- minors n (x:xs) = if length minors n == n   
 
--- alter :: Int -> [Int]
--- alter n = [(-x) / (-1) | x <- [1..n]]
+alter :: Int -> [Int]
+alter n = [(-x) * (-1) | x <- [1..n]]
 
 reverse' :: [a] -> [a]
 reverse' [] = []
 reverse' (x:xs) = reverse' xs ++ [x]
 
-divide :: [Int] -> Int -> ([Int], [Int])
-divide u n = (take n u, drop n u)
-
-intercal :: [Int] -> [Int] -> [Int]
-intercal a b = if length a == 1 then [head a] ++ [head b] else intercal (tail a) (tail b) 
