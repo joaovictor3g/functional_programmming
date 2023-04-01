@@ -58,5 +58,5 @@ splitStr all@(x:xs)
   | null xs = [[x]]
   | null [c | c <- all, c == ' '] = [x:xs]
   | x == ' ' = splitStr (strip xs)
-  | otherwise = breakStr all : splitStr (drop diff xs)
-  where diff = length (breakStr all)
+  | otherwise = breakStr all : splitStr (drop pieceLenght xs)
+  where pieceLenght = length (breakStr all)

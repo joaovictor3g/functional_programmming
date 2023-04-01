@@ -22,3 +22,14 @@ third (_,_,c) = c
 head' :: [a] -> a
 head' [] = error "Can't call head on a empty list, dummy!"
 head' (x:_) = x
+
+clynder :: Double -> Double -> Double
+clynder r h = 
+ let sideArea = 2 * pi * r * h
+     topArea = pi * r ^ 2
+ in sideArea + 2 * topArea 
+
+
+
+
+

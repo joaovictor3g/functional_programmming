@@ -13,6 +13,12 @@ factorial 0 = 1
 factorial 1 = 1
 factorial n = n * factorial (n - 1)
 
+fat :: Int -> Int
+fat n = case n of 0 -> 1
+                  1 -> 1
+                  value -> n * fat (n - 1)
+                  
+
 -- 4
 fibonacci :: Int -> Int
 fibonacci 0 = 0
@@ -145,8 +151,8 @@ isSorted (x:y:xs) = (x <= y) && isSorted (y:xs)
 
 -- 26 
 
--- qSort :: [Int] -> [Int]
--- qSort u = u 
+qSort :: [Int] -> [Int]
+qSort u = u 
 
 -- 27
 -- rotEsq :: Int -> String -> String
@@ -156,23 +162,60 @@ isSorted (x:y:xs) = (x <= y) && isSorted (y:xs)
 
 -- 29
 -- toUpper c = 
-findIndex :: Char -> Int
-findIndex c = if c `elem` ['a'..'z']
+findCharIndex :: Char -> Int
+findCharIndex c = if c `elem` ['a'..'z']
               then length ['a'..c] - 1
               else
                 length ['A'..c] - 1
 
 getCorrespondingChar :: Char -> String -> Char
 getCorrespondingChar c s = if c /= ' '
-                              then s !! findIndex c
+                              then s !! findCharIndex c
                               else ' '
 
 upper :: String -> String
 upper s = [getCorrespondingChar x ['A'..'Z'] | x <- s]
 
--- 30
+-- 30 👽
 capitalizeFst :: [Char] -> [Char]
 capitalizeFst (x:xs) = getCorrespondingChar x ['A'..'Z'] : xs
 
 title :: String  -> String
 title s = [if c /= ' ' then getCorrespondingChar c ['a'..'z'] else getCorrespondingChar c ['A'..'Z'] | c <- s]
+
+-- 31
+
+selec :: [Char] -> [Int] -> [Char]
+selec _ [] = ""
+selec s (x:xs) = s!!x : selec s xs
+
+-- 32
+
+isPalind :: String -> Bool
+isPalind s = s == reverse' s
+
+-- 33
+
+prime' :: Int -> Bool
+prime' n = null [x | x <- [2..(n - 1)], n `mod` x == 0]
+
+-- 34
+
+sdig :: Integral t => t -> t
+sdig n
+  | n < 10 = n
+  | otherwise = n `mod` 10 + sdig (n `div` 10)
+
+-- 35
+
+
+-- 36
+
+-- 37
+
+splitints :: Integral a => [a] -> ([a], [a])
+splitints u = ([x | x <- u, odd x], [x | x <- u, even x])
+
+-- 38
+perfect :: Integral a => a -> Bool
+perfect n = not (null ([x | x <- [1..n], mod (n^n) x == 0]))
