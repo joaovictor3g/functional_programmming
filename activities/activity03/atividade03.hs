@@ -12,12 +12,12 @@ nome = "João Victor Dias Barroso" -- coloque seu nome aqui entre aspas
 -- e final de uma strings dada.
 
 strip :: [Char] -> [Char]
-strip (x:xs)
-  | null (x:xs) = ""
+strip all@(x:xs)
+  | null all = ""
   | null xs = [c | c <- [x], c /= ' ']
   | x == blankStr = strip xs
-  | last xs == blankStr = strip (init (x:xs))
-  | otherwise = x:xs
+  | last xs == blankStr = strip (init all)
+  | otherwise = all
   where blankStr = ' '
 
 
@@ -65,6 +65,7 @@ splitStr all@(x:xs)
 splitStr' :: [Char] -> [[Char]]
 splitStr' xs
   | null xs = [""]
+  | null [c | c <- xs, c == ' '] = [xs]
   | xs == " " = [""]
   | otherwise = fst (popWord xs) : splitStr' (snd (popWord xs))
 
