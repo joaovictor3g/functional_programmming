@@ -17,7 +17,7 @@ nome = "João Victor Dias Barroso" -- coloque seu nome aqui entre aspas
 -- seus caracteres
 
 removeChar :: [Char] -> Char -> [Char]
-removeChar s x = [y | y <- s, y /= x]
+removeChar s x = foldl (\acc y -> if y == x then acc else y: acc) "" s
 
 countCharEquals :: [Char] -> Char -> Int
 countCharEquals s a = foldl (\acc y -> if a == y then 1 + acc else acc) 0 s 
