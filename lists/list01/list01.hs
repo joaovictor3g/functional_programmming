@@ -155,10 +155,17 @@ qSort :: [Int] -> [Int]
 qSort u = u 
 
 -- 27
--- rotEsq :: Int -> String -> String
--- rotEsq n s = 
+rotEsq :: Int -> String -> String
+rotEsq n all@(x:xs) = if n > 0
+                  then rotEsq (n - 1) xs ++ [x]
+                  else all  
 
 -- 28
+
+rotDir :: Int -> String -> String
+rotDir n s = if n > 0
+                  then last s:rotDir (n - 1) (init s)
+                  else s  
 
 -- 29
 -- toUpper c = 

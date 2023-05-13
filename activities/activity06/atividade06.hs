@@ -38,7 +38,6 @@ listMap fn (Node a ls) = Node (fn a) (listMap fn ls)
 -- cujas chaves são separadas por ":".
 -- Não modifique a assunatura.
 listToStr :: Show a => List a -> [Char]
--- listToStr :: List Char -> [Char]
 listToStr Empty = ""
 listToStr (Node c Empty) = show c
 listToStr (Node c ls) = show c ++ ":" ++ listToStr ls  
