@@ -25,9 +25,8 @@ instance Show Poly where
     show (Poly xs)
       | null xs = ""
       | last xs == 0 = showInits
-      | length xs == 1 = drop 1 lastEl
+      | length xs == 1 = show (head xs)
       | length xs == 2 = show (head xs) ++ lastEl ++ xEvaluate2
-      | last xs > 0 = showInits ++ lastEl ++ xEvaluate ++ show exp
       | otherwise = showInits ++ lastEl ++ xEvaluate ++ show exp
       where lastEl = (\n -> if n < 0 then show n else "+" ++ show n) (last xs)
             initEls = init xs
