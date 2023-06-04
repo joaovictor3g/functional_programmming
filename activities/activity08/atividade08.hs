@@ -39,10 +39,16 @@ main = do
     writeFile ("subst-" ++ f) (
       unlines (
         foldl (
-          \acc wordsL -> acc ++ [unwords (foldl (\acc2 word -> if fst (handleSpecialChar word) == w1 then acc2 ++ [w2  ++ snd (handleSpecialChar word)] else acc2 ++ [word]) [] (words wordsL))]
+          \acc wordsL -> acc ++ [unwords (toggleWords wordsL w1 w2)]
         ) [] (lines content)))
 
     return ()
+
+toggleWords :: String -> [Char] -> [Char] -> [[Char]]
+toggleWords f w1 w2 = foldl (
+  \acc2 word -> if fst (handleSpecialChar word) == w1 
+                then acc2 ++ [w2  ++ snd (handleSpecialChar word)] 
+                else acc2 ++ [word]) [] (words f)
 
 handleSpecialChar :: [Char] -> ([Char], [Char])
 handleSpecialChar w = (
